@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/ActionLauncherApi" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/LatestCrumblyy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/chillkr-admin-android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/chillkr-android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/repos/chillkr-backend" vcs="Git" />
   </component>
 </project>

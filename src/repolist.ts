@@ -5,7 +5,7 @@ import { GithubRepo } from "./interfaces";
  * list of all user repos
  * @param token
  */
-export default async function (token: string) {
+export default async function (token: string): Promise<GithubRepo[]> {
     // --- we will set this false once any response is empty or less than page size
     let cont = true;
     let page = 1;
@@ -17,5 +17,5 @@ export default async function (token: string) {
         if (data.length < 50) cont = false;
     }
 
-    console.log(repos.map((el) => el.name));
+    return repos;
 }
