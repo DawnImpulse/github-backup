@@ -1,9 +1,13 @@
 import { Command } from "commander";
 import fileName from "./fileName";
 import repolist from "./repolist";
+import * as fs from "fs";
+import clone from "./clone";
+import { GithubRepo } from "./interfaces";
+import { log } from "node:util";
 
 const program = new Command();
-const repo = "more info at https://github.com/dawnimpulse/github-backup";
+const moreInfo = "more info at https://github.com/dawnimpulse/github-backup";
 
 program
     .name("github-backup")
@@ -14,16 +18,16 @@ program
     .option("-nz, --nozip", "(optional) not to create zip of the folder", false)
     .option(
         "-n, --name <char>",
-        `provide filename (optional); you can include variables; ${repo}`,
+        `provide filename (optional); you can include variables; ${moreInfo}`,
         "backup-{YYYY-MM-DD-HH-mm}"
     )
-    .option("-t, --token <char>", `(required) user github token; ${repo}`);
+    .option("-t, --token <char>", `(required) user github token; ${moreInfo}`);
 
 program
     .action(async (data) => {
         // --- if no token; then return
         if (!data.token) {
-            console.error(`user github token is required; ${repo}`);
+            console.error(`user github token is required; ${moreInfo}`);
             process.exit();
         }
 
@@ -31,6 +35,6 @@ program
         let name = fileName(data.name);
 
         // --- get list of all user repos
-        await repolist(data.token);
+        //await repolist(data.token);
     })
     .parse();

@@ -2,11 +2,17 @@
   "name": "github-backup",
   "version": "0.1.0",
   "description": "backup user github repos",
-  "main": "dist/index.js",
+  "bin": "minimize/index.js",
   "scripts": {
     "build": "tsc",
+    "build:package": "npm run build && npm run minimize && npm run package",
     "watch": "tsc --watch",
-    "dev": "tsnd --respawn src/index.ts"
+    "dev": "tsnd --respawn src/index.ts",
+    "minimize": "ncc build ./dist/index.js -o minimize",
+    "package": "pkg ."
+  },
+  "pkg": {
+    "outputPath": "package"
   },
   "repository": {
     "type": "git",
