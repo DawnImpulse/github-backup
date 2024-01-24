@@ -1,0 +1,31 @@
+{
+  "name": "github-backup",
+  "version": "0.1.0",
+  "description": "backup user github repos",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsnd --respawn src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawnimpulse/github-backup.git"
+  },
+  "author": "DawnImpulse <Saksham Khurana>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/dawnimpulse/github-backup/issues"
+  },
+  "homepage": "https://github.com/dawnimpulse/github-backup#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.6",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "commander": "^11.1.0",
+    "moment": "^2.30.1"
+  }
+}

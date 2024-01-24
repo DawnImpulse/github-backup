@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "outDir": "dist",
+    "removeComments": true,
+    "target": "ES5",
+    "sourceRoot": "src",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {},
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "node_modules/**/*"
+  ]
+}
