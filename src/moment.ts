@@ -7,7 +7,6 @@ export default class Moment {
      * @param utc
      */
     static parse(format: string, utc: boolean = false): string {
-        let mnt = moment();
-        return utc ? mnt.format(format) : moment().utc().format(format);
+        return utc ? moment().utc().format(format) : moment().format(format);
     }
 }

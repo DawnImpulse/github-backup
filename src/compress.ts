@@ -8,5 +8,5 @@ import { Zip } from "zip-lib";
 export default function (path: string, name: string): Promise<void> {
     const zip = new Zip();
     zip.addFolder(path + `./${name}`);
-    return zip.archive(`${path}/${name}.zip`);
+    return zip.archive(`${path}./${name}.zip`);
 }

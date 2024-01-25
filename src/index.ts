@@ -16,17 +16,22 @@ program
     .version(process.env.npm_package_version || "v0.0.0");
 
 program
+    .option("-t, --token <char>", `(required) user github token; ${moreInfo}`)
     .option("-nz, --nozip", "(optional) not to create zip of the folder", false)
     .option(
         "-n, --name <char>",
-        `provide filename (optional); you can include variables; ${moreInfo}`,
+        `(optional) provide filename; you can include variables; ${moreInfo}`,
         "backup-{YYYY-MM-DD-HH-mm-ss}"
     )
-    .option("-t, --token <char>", `(required) user github token; ${moreInfo}`)
     .option(
         "-p, --path <char>",
         "(optional) output directory; default is current directory",
         ""
+    )
+    .option(
+        "-u, --utc",
+        "(optional) whether your utc timezone; default is system",
+        false
     );
 
 program
@@ -44,7 +49,7 @@ program
 
             // --- name of the file
             console.log(info, "processing filename & output path");
-            let name = fileName(data.name);
+            let name = fileName(data.name, data.utc);
 
             // --- path
             let path = data.path + `./${name}`;
