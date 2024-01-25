@@ -15,7 +15,7 @@ Download the latest executable for your machine from [Releases](https://github.c
 > **Run the executable via command line only**
 
 ```  
-./github-backup-windows.exe -t abcdefgh  
+./github-backup-win.exe -t abcdefgh  
 ```  
 
 ### Options
@@ -33,7 +33,7 @@ Download the latest executable for your machine from [Releases](https://github.c
 The name of the zip/folder can be dynamic based on current date time. You can provide the dynamic timestamp within `{}` & it will be automatically parsed to get current values.
 
 * Always provide the name & path in `''` or `""`
-* example  `./github-backup-windows.exe -t abcd -n 'backup-{YYYY}'`
+* example  `./github-backup-win.exe -t abcd -n 'backup-{YYYY}'`
 * The timestamp values is based on moment.js ; refer to [moment docs](https://momentjs.com/docs/#/parsing/string-format/) for creating timestamp
 * You can have multiple timestamp in name
   * example `backup-{YYYY}-xyz-{MM}abxd{DD}` will give result ***backup-2024-xyz-01abxd25***
@@ -41,16 +41,16 @@ The name of the zip/folder can be dynamic based on current date time. You can pr
 ### Examples
 
 * with path  
-  `./github-backup-windows.exe -t abcd -p 'E:\'`
+  `./github-backup-win.exe -t abcd -p 'E:\'`
 
 * no zip  
-  `./github-backup-windows.exe -t abcd -nz`
+  `./github-backup-win.exe -t abcd -nz`
 
-* utc timestamp
-  `./github-backup-windows.exe -t abcd -n '{YY-MM-DD}' -u`
+* utc timestamp  
+  `./github-backup-win.exe -t abcd -n '{YY-MM-DD}' -u`
 
 * with all options *(short or long form can be interchanged)*  
-  `./github-backup-windows.exe --token abcd --path 'E:\' --name 'backup-{MM}-{DD}' --nozip --utc`
+  `./github-backup-win.exe --token abcd --path 'E:\' --name 'backup-{MM}-{DD}' --nozip --utc`
 
 ### Contact
 Twitter - [@dawnimpulse](https://twitter.com/dawnimpulse)  

@@ -26,6 +26,8 @@
   "homepage": "https://github.com/dawnimpulse/github-backup#readme",
   "devDependencies": {
     "@types/node": "^20.11.6",
+    "@vercel/ncc": "^0.38.1",
+    "pkg": "^5.8.1",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
   },

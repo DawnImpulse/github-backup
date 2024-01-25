@@ -1,0 +1,24 @@
+name: Deploy packages to Release
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install modules
+        run: npm i
+      - name: Create packages
+        run: npm run build:package
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            package/github-backup-linux
+            package/github-backup-macos
+            package/github-backup-win.exe
+    permissions:
+      contents: write
