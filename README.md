@@ -25,7 +25,8 @@ Download the latest executable for your machine from [Releases](https://github.c
 | -p, --path   | no       | current working directory    | provide complete path for where to store backup zip/folder                                                                                                                                  |    
 | -nz, --nozip | no       | false                        | whether to zip all the repo together or keep them in a folder only; by default it will zip                                                                                                  |    
 | -n, --name   | no       | backup-{YYYY-MM-DD-HH-mm-ss} | name of folder/zip; more details in [Dynamic Name](#dynamic-name)                                                                                                                           |  
-| -t, --token  | **YES** | -                            | user github token with all repo access; more details in [Github Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) |  
+| -u, --utc    | no       | false                        | use utc timezone for formatting time; default is system                                                                                                                                     |
+| -t, --token  | **YES**  | -                            | user github token with all repo access; more details in [Github Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) |  
 
 ### Dynamic Name
 
@@ -45,8 +46,11 @@ The name of the zip/folder can be dynamic based on current date time. You can pr
 * no zip  
   `./github-backup-windows.exe -t abcd -nz`
 
+* utc timestamp
+  `./github-backup-windows.exe -t abcd -n '{YY-MM-DD}' -u`
+
 * with all options *(short or long form can be interchanged)*  
-  `./github-backup-windows.exe --token abcd --nozip --path 'E:\' --name 'backup-{MM}-{DD}' `
+  `./github-backup-windows.exe --token abcd --path 'E:\' --name 'backup-{MM}-{DD}' --nozip --utc`
 
 ### Contact
 Twitter - [@dawnimpulse](https://twitter.com/dawnimpulse)  
