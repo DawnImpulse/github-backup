@@ -4,7 +4,8 @@ import repolist from "./repolist";
 import Rest from "./rest";
 import download from "./download";
 import compress from "./compress";
-import { info, success, error } from "log-symbols";
+import { error, info, success } from "log-symbols";
+import { rm } from "node:fs/promises";
 
 const program = new Command();
 const moreInfo = "more info at https://github.com/dawnimpulse/github-backup";
@@ -42,11 +43,15 @@ program
             }
 
             // --- name of the file
-            console.log(success, "processing filename & output path");
+            console.log(info, "processing filename & output path");
             let name = fileName(data.name);
 
             // --- path
             let path = data.path + `./${name}`;
+            console.log(
+                success,
+                `saving ${name}${!data.nozip ? ".zip" : ""} in ${data.path}`
+            );
 
             // --- get user info
             console.log(info, "fetching user info from token");
@@ -63,14 +68,17 @@ program
             await download(repos, user, data.token, path);
             console.log(success, "downloaded all repos");
 
-            // --- compress backup
-            console.log(info, "compressing repos");
-            await compress(path, `${name}.zip`);
-            console.log(success, "compressed all repos");
+            // --- if compress
+            if (!data.nozip) {
+                console.log(info, "compressing repos");
+                await compress(data.path, name);
+                await rm(path, { recursive: true });
+                console.log(success, "compressed all repos");
+            }
 
             console.log(
                 success,
-                `completed successfully in ${Date.now() - started}s`
+                `completed successfully in ${(Date.now() - started) / 1000}s`
             );
         } catch (err) {
             console.error(err?.message);
