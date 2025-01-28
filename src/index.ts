@@ -29,6 +29,11 @@ program
         ""
     )
     .option(
+        "-c, --concurrent <char>",
+        "(optional) concurrent/parallel downloads; default is 2",
+        ""
+    )
+    .option(
         "-u, --utc",
         "(optional) whether your utc timezone; default is system",
         false
@@ -46,6 +51,9 @@ program
                 );
                 process.exit();
             }
+
+            // --- get concurrent/parallel count
+            const concurrent = Number(data.concurrent);
 
             // --- name of the file
             console.log(info, "processing filename & output path");
@@ -69,8 +77,11 @@ program
             console.log(success, "fetched list of all user repos");
 
             // --- download all repos
-            console.log(info, "downloading repos");
-            await download(repos, user, data.token, path);
+            console.log(
+                info,
+                `downloading repos - ${concurrent} repos in parallel`
+            );
+            await download(repos, user, data.token, path, concurrent);
             console.log(success, "downloaded all repos");
 
             // --- if compress

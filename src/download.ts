@@ -5,12 +5,12 @@ export default async function (
     repos: GithubRepo[],
     user: GithubUser,
     token: string,
-    path: string
+    path: string,
+    concurrent: number
 ) {
     const total = repos.length;
     let done = 0;
     let failed = 0;
-    const maxConcurrentClones = 10;
 
     const clonePromises: any[] = [];
 
@@ -28,8 +28,8 @@ export default async function (
         );
 
         // Limit concurrent clones
-        if (clonePromises.length >= maxConcurrentClones) {
-            await Promise.all(clonePromises.splice(0, maxConcurrentClones));
+        if (clonePromises.length >= concurrent) {
+            await Promise.all(clonePromises.splice(0, concurrent));
             console.log(`Downloaded ${done}/${total} , Failed ${failed}`);
         }
     }
