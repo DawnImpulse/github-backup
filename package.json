@@ -9,7 +9,7 @@
     "watch": "tsc --watch",
     "dev": "tsnd --respawn src/index.ts",
     "minimize": "ncc build ./dist/index.js -o minimize",
-    "package": "pkg ."
+    "package": "pkg -t node20-win,node20-macos,node20-linux ."
   },
   "pkg": {
     "outputPath": "package"
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/node": "^20.11.6",
     "@vercel/ncc": "^0.38.1",
-    "pkg": "^5.8.1",
+    "@yao-pkg/pkg": "^6.2.0",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
   },
