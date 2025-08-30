@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  github-backup:
+    build: .
+    container_name: github-backup
+    environment:
+      # GitHub settings
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      # S3 settings
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_PREFIX=${S3_PREFIX}
+      - S3_MODE=${S3_MODE}
+      - S3_ENDPOINT=${S3_ENDPOINT}
+      - S3_REGION=${S3_REGION}
+      - S3_KEY=${S3_KEY}
+      - S3_SECRET=${S3_SECRET}
+      - NAME=${NAME}
+      - CONCURRENT=${CONCURRENT}
+      - UTC=${UTC}
+      - CRON_SCHEDULE=${CRON_SCHEDULE}
+    volumes:
+      - github_backup_data:/github-backup
+    restart: unless-stopped
+
+volumes:
+  github_backup_data:
