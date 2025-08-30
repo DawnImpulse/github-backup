@@ -14,7 +14,7 @@
     "url": "git+https://github.com/dawnimpulse/github-backup.git"
   },
   "author": "DawnImpulse <Saksham Khurana>",
-  "license": "Unlicense",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dawnimpulse/github-backup/issues"
   },

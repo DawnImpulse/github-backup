@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-backup/backup-2025-08-30-15-44-19/LatestCrumblyy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-backup/backup-2025-08-30-15-44-19/altered-items" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-backup/backup-2025-08-30-15-44-19/census" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-backup/backup-2025-08-30-15-44-19/chillkr-admin-android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-backup/backup-2025-08-30-15-44-19/chillkr-android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github-backup/backup-2025-08-30-15-44-19/chillkr-backend" vcs="Git" />
   </component>
 </project>
