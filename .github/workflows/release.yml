@@ -16,11 +16,13 @@ jobs:
       - name: Install modules
         run: bun install
       - name: Create packages
-        run: bun run package
+        run: |
+          bun run package
+          mv output.ts github-backup-${{ github.ref_name }}.ts
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            output.ts
+            github-backup-${{ github.ref_name }}.ts
     permissions:
       contents: write
