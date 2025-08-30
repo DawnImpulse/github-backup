@@ -1,13 +1,10 @@
 {
   "name": "github-backup",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "backup user github repos",
-  "bin": "minimize/index.js",
   "scripts": {
-    "package": "bun build src/index.ts --minify --target bun --outfile output.ts"
-  },
-  "pkg": {
-    "outputPath": "package"
+    "package": "bun build src/index.ts --minify --target bun --outfile output.ts",
+    "release": "commit-and-tag-version"
   },
   "repository": {
     "type": "git",
@@ -20,9 +17,7 @@
   },
   "homepage": "https://github.com/dawnimpulse/github-backup#readme",
   "devDependencies": {
-    "@types/node": "^20.11.6",
-    "@vercel/ncc": "^0.38.1",
-    "@yao-pkg/pkg": "^6.2.0",
+    "commit-and-tag-version": "^12.6.0",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
   },
