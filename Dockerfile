@@ -1,30 +1,19 @@
 # syntax=docker/dockerfile:1
-FROM node:20-alpine AS base
+FROM oven/bun:1.2.19-alpine AS base
 
 # git is required for cloning repos
 RUN apk add --no-cache git
 
 WORKDIR /app
-COPY package*.json ./
-COPY tsconfig.json ./
-COPY src ./src
 
-# build
-RUN npm install
-RUN npm run build && npm prune --production
+COPY package.json .
+COPY bun.lock .
+COPY ./src ./src
 
-# final runtime stage
-FROM node:20-alpine
-RUN apk add --no-cache git
-WORKDIR /app
-COPY --from=base /app/node_modules ./node_modules
-COPY --from=base /app/dist ./dist
+RUN bun install --production --frozen-lockfile
 
 # default volume for backups
 VOLUME ["/github-backup"]
 
-# environment variables documentation
-ENV BACKUP_DIR=/github-backup
-
 # run the docker env runner
-CMD ["node", "dist/docker.js"]
+CMD ["bun", "src/docker.ts"]
