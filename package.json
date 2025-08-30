@@ -1,6 +1,6 @@
 {
   "name": "github-backup",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "backup user github repos",
   "scripts": {
     "package": "bun build src/index.ts --minify --target bun --outfile output.ts",
