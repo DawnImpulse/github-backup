@@ -4,12 +4,7 @@
   "description": "backup user github repos",
   "bin": "minimize/index.js",
   "scripts": {
-    "build": "tsc",
-    "build:package": "npm run build && npm run minimize && npm run package",
-    "watch": "tsc --watch",
-    "dev": "tsnd --respawn src/index.ts",
-    "minimize": "ncc build ./dist/index.js -o minimize",
-    "package": "pkg -t node20-win,node20-macos,node20-linux ."
+    "package": "bun build src/index.ts --minify --target bun --outfile output.ts"
   },
   "pkg": {
     "outputPath": "package"
