@@ -17,7 +17,6 @@ interface EnvConfig {
     utc: boolean;
     s3Bucket?: string;
     s3Prefix?: string;
-    s3Mode?: "direct" | "zip";
     s3Region?: string;
     s3Endpoint?: string;
     s3AccessKeyId?: string;
@@ -35,11 +34,10 @@ function readEnv(): EnvConfig {
     const namePattern = process.env.NAME || "backup-{YYYY-MM-DD-HH-mm-ss}";
     const outputPath = process.env.BACKUP_DIR || "/github-backup"; // expected volume mount
     const concurrent = Number(process.env.CONCURRENT || "2");
-    const utc = (process.env.UTC || "false").toLowerCase() === "true";
+    const utc = (process.env.UTC || "true").toLowerCase() === "true";
     const s3Bucket = process.env.S3_BUCKET;
     const s3Endpoint = process.env.S3_ENDPOINT;
     const s3Prefix = process.env.S3_PREFIX || "";
-    const s3Mode = (process.env.S3_MODE as EnvConfig["s3Mode"]) || undefined; // "direct"|"zip"
     const s3Key = process.env.S3_KEY;
     const s3Secret = process.env.S3_SECRET;
     const s3Region = process.env.S3_REGION;
@@ -52,7 +50,6 @@ function readEnv(): EnvConfig {
         utc,
         s3Bucket,
         s3Prefix,
-        s3Mode,
         s3Endpoint,
         s3Region,
         s3AccessKeyId: s3Key,
@@ -93,29 +90,17 @@ async function runBackupOnce(env: EnvConfig) {
                 prefix: env.s3Prefix,
                 region: env.s3Region || "us-west-2",
             });
-            const timestampFolder = name; // use generated name as folder in S3
 
             console.log(`Starting S3 upload to bucket: ${env.s3Bucket}`);
-            if (env.s3Mode === "direct") {
-                await s3Manager.uploadDirectory(dirPath, timestampFolder);
-            } else {
-                await compress(env.outputPath, name);
-                const zipPath = `${env.outputPath}/${name}.zip`;
-                await s3Manager.uploadSingleFile(zipPath, `${name}.zip`);
-                // Delete local zip and directory after upload
-                try {
-                    const { rm } = await import("node:fs/promises");
-                    await rm(zipPath);
-                    await rm(dirPath, { recursive: true });
-                } catch {}
-            }
-            // Clean up directory after direct upload
-            if (env.s3Mode === "direct") {
-                try {
-                    const { rm } = await import("node:fs/promises");
-                    await rm(dirPath, { recursive: true });
-                } catch {}
-            }
+            await compress(env.outputPath, name);
+            const zipPath = `${env.outputPath}/${name}.zip`;
+            await s3Manager.uploadSingleFile(zipPath, `${name}.zip`);
+            // Delete local zip and directory after upload
+            try {
+                const { rm } = await import("node:fs/promises");
+                await rm(zipPath);
+                await rm(dirPath, { recursive: true });
+            } catch {}
         }
 
         // Create zip for local storage

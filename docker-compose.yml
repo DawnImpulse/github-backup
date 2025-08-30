@@ -9,11 +9,11 @@ services:
       # S3 settings
       - S3_BUCKET=${S3_BUCKET}
       - S3_PREFIX=${S3_PREFIX}
-      - S3_MODE=${S3_MODE}
       - S3_ENDPOINT=${S3_ENDPOINT}
       - S3_REGION=${S3_REGION}
       - S3_KEY=${S3_KEY}
       - S3_SECRET=${S3_SECRET}
+      # Other settings
       - NAME=${NAME}
       - CONCURRENT=${CONCURRENT}
       - UTC=${UTC}
