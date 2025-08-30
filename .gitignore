@@ -4,3 +4,4 @@ package
 minimize
 repos
 .idea
+.env
