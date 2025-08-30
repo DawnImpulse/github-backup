@@ -1,72 +1,60 @@
 
-
 ## GitHub Backup Script
 
-> A cli tool to back up all the user repositories on GitHub  
-![GitHub Release](https://img.shields.io/github/v/release/dawnimpulse/github-backup)
-
-* ***Written in :*** ![Node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white&style=flat) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white&style=flat)
-* ***Available for :*** ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)  ![MacOs](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white&style=flat)  ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white&style=flat)
-* Simply run on command line with arguments
-* You can set it up along with cron, task scheduler etc. for auto backups
+> A cli tool to back up all the user repositories on GitHub
+>
+* ***Written in :*** ![Bun](https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white&style=flat) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white&style=flat)
+* Simply run on the command line with arguments
+* You can set it up along with cron, task scheduler, etc. for auto backups
+* Or you can deploy it as a docker container with cron scheduling inbuilt
+* Upload directly to S3 (with docker container only)
 
 ### Installation
-Download the latest executable for your machine from [Releases](https://github.com/DawnImpulse/github-backup/releases)
 
-### Usage
-> **Run the executable via command line only**
+#### Docker Compose
+* Clone the project
+* Setup .env file as mentioned in the [ENV.docker.md](ENV.docker.md) file
+* Start the service using `docker-compose up`
 
-``` ./github-backup-win.exe -t abcdefgh    
-```   
-### Options
+#### Using cli
 
-| flag             | required | default                      | description                                                                                                                                                                                 |      
-|------------------|----------|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|      
-| -p, --path       | no       | current working directory    | provide complete path for where to store backup zip/folder                                                                                                                                  |      
-| -nz, --nozip     | no       | false                        | whether to zip all the repo together or keep them in a folder only; by default it will zip                                                                                                  |      
-| -n, --name       | no       | backup-{YYYY-MM-DD-HH-mm-ss} | name of folder/zip; more details in [Dynamic Name](#dynamic-name)                                                                                                                           |    
-| -u, --utc        | no       | false                        | use utc timezone for formatting time; default is system                                                                                                                                     |  
-| -t, --token      | **YES**  | -                            | user github token with all repo access; more details in [Github Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) |    
-| -c, --concurrent | no       | 2                            | no of concurrent repo download operations                                                                                                                                                   |
+##### Pre-Requisites
 
-### Dynamic Name
+* Download the latest release from [Github Releases](https://github.com/dawnimpulse/github-backup/releases)
+* Bun runtime installed (https://bun.com/)
+* Check all cli options from [ENV.md](ENV.md)
 
-The name of the zip/folder can be dynamic based on current date time. You can provide the dynamic timestamp within `{}` & it will be automatically parsed to get current values.
+```
+bun ./github-backup-v0.2.0.ts -t abcdef
+```
 
-* Always provide the name & path in `''` or `""`
-* example  `./github-backup-win.exe -t abcd -n 'backup-{YYYY}'`
-* The timestamp values is based on moment.js ; refer to [moment docs](https://momentjs.com/docs/#/parsing/string-format/) for creating timestamp
-* You can have multiple timestamp in name
-  * example `backup-{YYYY}-xyz-{MM}abxd{DD}` will give result ***backup-2024-xyz-01abxd25***
-
-### Examples
-
-* with path    
-  `./github-backup-win.exe -t abcd -p 'E:\'`
-
-* no zip    
-  `./github-backup-win.exe -t abcd -nz`
-
-* utc timestamp    
-  `./github-backup-win.exe -t abcd -n '{YY-MM-DD}' -u`
-
-* concurrent operations (10 parallel downloads)
-  `./github-backup-win.exe -t abcd -c 10`
-
-* with all options *(short or long form can be interchanged)*    
-  `./github-backup-win.exe --token abcd --path 'E:\' --name 'backup-{MM}-{DD}' --nozip --utc`
 
 ### Contact
-Twitter - [@dawnimpulse](https://twitter.com/dawnimpulse)    
+Twitter - [@dawnimpulse](https://twitter.com/dawnimpulse)  
 Email - [dawnimpulse@gmail.com](mailto://dawnimpulse@gmail.com)
 
 
-### The Unlicense
-~~~~  
-github-backup is free and unencumbered public domain software.   
-  
-For more information, see https://unlicense.org/ or the accompanying UNLICENSE file.   
-~~~~  
+### License
+```
+MIT License
 
+Copyright (c) 2025 CODEVRY LABS (Saksham Khurana)
 
-> Written with [StackEdit](https://stackedit.io/).
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

@@ -26,12 +26,12 @@ program
     .option(
         "-p, --path <char>",
         "(optional) output directory; default is current directory",
-        ""
+        "./github-backup"
     )
     .option(
         "-c, --concurrent <char>",
         "(optional) concurrent/parallel downloads; default is 2",
-        ""
+        "2"
     )
     .option(
         "-u, --utc",
@@ -60,7 +60,7 @@ program
             let name = fileName(data.name, data.utc);
 
             // --- path
-            let path = data.path + `./${name}`;
+            let path = data.path + `/${name}`;
             console.log(
                 success,
                 `saving ${name}${!data.nozip ? ".zip" : ""} in ${data.path}`

@@ -1,41 +1,34 @@
 {
   "name": "github-backup",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "backup user github repos",
-  "bin": "minimize/index.js",
   "scripts": {
-    "build": "tsc",
-    "build:package": "npm run build && npm run minimize && npm run package",
-    "watch": "tsc --watch",
-    "dev": "tsnd --respawn src/index.ts",
-    "minimize": "ncc build ./dist/index.js -o minimize",
-    "package": "pkg -t node20-win,node20-macos,node20-linux ."
-  },
-  "pkg": {
-    "outputPath": "package"
+    "package": "bun build src/index.ts --minify --target bun --outfile output.ts",
+    "release": "commit-and-tag-version"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dawnimpulse/github-backup.git"
   },
   "author": "DawnImpulse <Saksham Khurana>",
-  "license": "Unlicense",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dawnimpulse/github-backup/issues"
   },
   "homepage": "https://github.com/dawnimpulse/github-backup#readme",
   "devDependencies": {
-    "@types/node": "^20.11.6",
-    "@vercel/ncc": "^0.38.1",
-    "@yao-pkg/pkg": "^6.2.0",
+    "commit-and-tag-version": "^12.6.0",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.676.0",
+    "@aws-sdk/lib-storage": "^3.676.0",
     "axios": "^1.6.5",
     "commander": "^11.1.0",
     "log-symbols": "^4.1.0",
     "moment": "^2.30.1",
+    "node-cron": "^3.0.3",
     "zip-lib": "^0.7.3"
   }
 }

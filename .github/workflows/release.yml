@@ -9,16 +9,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
       - name: Install modules
-        run: npm i
+        run: bun install
       - name: Create packages
-        run: npm run build:package
+        run: |
+          bun run package
+          mv output.ts github-backup-${{ github.ref_name }}.ts
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            package/github-backup-linux
-            package/github-backup-macos
-            package/github-backup-win.exe
+            github-backup-${{ github.ref_name }}.ts
     permissions:
       contents: write
